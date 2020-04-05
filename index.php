@@ -17,7 +17,7 @@ $app = new Slim\App($configs);
 
 /* ROUTES */
 $app->get('/', function ($request, $response) {
-	return "Lanjutkan!";
+	return "Hello...Its Damon's Bot";
 });
 
 $app->post('/', function ($request, $response)
@@ -46,9 +46,41 @@ $app->post('/', function ($request, $response)
 	foreach ($data['events'] as $event)
 	{
 		$userMessage = $event['message']['text'];
-		if(strtolower($userMessage) == 'halo')
+		if(strtolower($userMessage) == 'joke')
 		{
-			$message = "Halo juga";
+			$message = "you are a joke";
+            $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($message);
+			$result = $bot->replyMessage($event['replyToken'], $textMessageBuilder);
+			return $result->getHTTPStatus() . ' ' . $result->getRawBody();
+		
+		}
+		if(strtolower($userMessage) == 'send nudes')
+		{
+			$message = "No, I am not supposed to do that";
+            $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($message);
+			$result = $bot->replyMessage($event['replyToken'], $textMessageBuilder);
+			return $result->getHTTPStatus() . ' ' . $result->getRawBody();
+		
+		}
+		if(strtolower($userMessage) == 'game')
+		{
+			$message = "Dota 2 is the best game. You should try it.";
+            $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($message);
+			$result = $bot->replyMessage($event['replyToken'], $textMessageBuilder);
+			return $result->getHTTPStatus() . ' ' . $result->getRawBody();
+		
+		}
+		if(strtolower($userMessage) == 'what is your name?')
+		{
+			$message = "I am Lord Damon's apprentice and I am not supposed to disclose my identity....although I am big fan of The Batman";
+            $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($message);
+			$result = $bot->replyMessage($event['replyToken'], $textMessageBuilder);
+			return $result->getHTTPStatus() . ' ' . $result->getRawBody();
+		
+		}
+		if(strtolower($userMessage) == 'comics')
+		{
+			$message = "DC....Only DC";
             $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($message);
 			$result = $bot->replyMessage($event['replyToken'], $textMessageBuilder);
 			return $result->getHTTPStatus() . ' ' . $result->getRawBody();
